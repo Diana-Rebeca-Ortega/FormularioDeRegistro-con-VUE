@@ -6,16 +6,18 @@ import HelloWorld from './components/HelloWorld.vue'
 <template>
   <header>
     <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-        <RouterLink to="/registro"> Formulario de Registro</RouterLink>
-      </nav>
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm mb-4">
+  <div class="container">
+    <div class="navbar-nav d-flex align-items-center gap-3">
+      <RouterLink to="/" class="nav-link">Home</RouterLink>
+      <RouterLink to="/about" class="nav-link">About</RouterLink>
+      
+      <RouterLink to="/registro" class="btn btn-outline-primary fw-bold px-4 rounded-pill shadow-sm">
+         Realizar  Formulario de Registro
+      </RouterLink>
     </div>
+  </div>
+</nav>
   </header>
 
   <RouterView />

@@ -9,7 +9,7 @@ semestre:string;
 carrera: string;
 materias:string[];
 especialidad: string;
-extraescolares:string;
+extraescolares:[];
 }
 
 const listaAlumnos = ref<Alumno[]>([]);
@@ -29,7 +29,7 @@ const registrar = () => {
   //Limpiar campos después de registrar
   nuevoAlumno.value = {
     numControl: '', nombre: '', edad: null, semestre: '', 
-    carrera: '', materias: [], especialidad: '', extraescolares: ''
+    carrera: '', materias: [], especialidad: '', extraescolares: []
   };
   alert("¡Alumno registrado con éxito!");
 };
@@ -142,30 +142,34 @@ const actividadesExtraescolares = ref(['Volley', 'Escolta', 'Baile', 'Futbol', '
       
       <div class="table-responsive shadow-sm rounded">
         <table class="table table-hover align-middle mb-0" v-if="listaAlumnos.length > 0">
-          <thead class="table-dark">
-            <tr>
-              <th>NC</th>
-              <th>Nombre</th>
-              <th>Carrera</th>
-              <th>Materias</th>
-              <th>Especialidad</th>
-              <th>Extraescolares</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="(al, index) in listaAlumnos" :key="index">
-              <td class="fw-bold text-primary">{{ al.numControl }}</td>
-              <td>{{ al.nombre }}</td>
-              <td><span class="badge bg-info text-dark">{{ al.carrera }}</span></td>
-              <td><small class="text-muted">{{ al.materias.join(', ') }}</small></td>
-              <td>{{ al.especialidad }}</td>
-              <td><small>{{ al.extraescolares.join(', ') }}</small></td>
-            </tr>
-          </tbody>
-        </table>
+    <thead class="table-dark">
+      <tr>
+        <th>NC</th>
+        <th>Nombre</th>
+        <th>Carrera</th>
+        <th>Materias</th>
+        <th>Especialidad</th>
+        <th>Extraescolares</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr v-for="(al, index) in listaAlumnos" :key="index">
+        <td class="fw-bold text-primary">{{ al.numControl }}</td>
+        <td>{{ al.nombre }}</td>
+        <td><span class="badge bg-info text-dark">{{ al.carrera }}</span></td>
+        <td><small class="text-muted">{{ al.materias.join(', ') }}</small></td>
+        <td>{{ al.especialidad }}</td>
+        <td>
+          <small>
+            {{ Array.isArray(al.extraescolares) ? al.extraescolares.join(', ') : al.extraescolares }}
+          </small>
+        </td>
+      </tr>
+    </tbody>
+  </table>
         
         <div v-else class="alert alert-info text-center py-4 mb-0">
-           No hay alumnos registrados aún. ¡Comienza a llenar el formulario!
+           Sin alumnos registrados
         </div>
       </div>
     </div>
